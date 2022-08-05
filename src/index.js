@@ -13,9 +13,9 @@ const client = new Client({
 });
 
 (async () => {
-	
+
 	const datasource = [];
-	
+
 	/*
 	 * Current date minus 100 days
 	 */
@@ -23,38 +23,42 @@ const client = new Client({
 	timestamp.setDate(
 		timestamp.getDate() - 100
 	);
-	
+
 	// Run this 100 times
 	for (let i = 0; i < 100; i++) {
-		
+
 		datasource.push({
 			device: 1,
 			timestamp,
 			payload: {
-				xovis: {
-					fw: 5
+				THIS: {                  // REPLACE
+					IS: {                // THIS
+						MY: {            // WITH
+							PAYLOAD: 123 // WHATEVER
+						}
+					}
 				}
 			}
 		});
-		
+
 		// Increment date by one
 		// on each iteration
 		timestamp.setDate(
 			timestamp.getDate() + 1
 		);
-		
+
 	}
-	
+
 	await client.helpers.bulk({
 		datasource, onDocument() {
-			
+
 			return {
 				index: {
 					_index: 'dtype_1' // <- dtype_{DEVICE_TYPE_ID}
 				}
 			};
-			
+
 		}
 	});
-	
+
 })();
