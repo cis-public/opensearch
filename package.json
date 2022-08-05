@@ -1,0 +1,14 @@
+{
+	"name": "opensearch",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"compose:up": "docker-compose up --remove-orphans"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@opensearch-project/opensearch": "^2.0.0"
+	}
+}
